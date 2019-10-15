@@ -1,26 +1,66 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Grid,Container} from '@material-ui/core'
+import { BrowserRouter, Route } from 'react-router-dom'
+import youtube from './api/youtube'
+import SearchBar from './components/search-bar'
+import VideoDetails from './components/video-details'
+import VideoList from './components/video-list'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    videos:[],
+    selectedVideo:null
+  }
+
+  submitForm = async (searchTerm) => {
+    const res = await youtube.get('search',{
+      params:{
+        part:'snippet',
+        maxResults: 12,
+        key: 'AIzaSyCvTJVsowiCrEtQ79R9CHEeOglFCY1Q_rI',
+        q: searchTerm
+      }
+    })
+
+    this.setState({
+      videos:res.data.items
+    })
+
+  }
+
+  selectVideoFunc = (video) => {
+    console.log(video)
+    this.setState({selectedVideo:video})
+  }
+
+  componentDidMount(){
+    this.submitForm('liverpool champions')
+  }
+
+
+  render() {
+    const {videos,selectedVideo} = this.state
+    return (
+      <BrowserRouter>
+
+        <Container maxWidth="lg" fixed >
+          <Grid justify="center" container spacing={3}>
+            <Grid item xs={12}>
+              <SearchBar submitForm={this.submitForm}/>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Route path="/:video_id" render={(routeProps) => (<VideoDetails {...routeProps} video={selectedVideo} />)}/>
+              <Route exact path="/" render={(routeProps) => (<VideoList {...routeProps} selectVideoFunc={this.selectVideoFunc} videos={videos} />)}/>
+            </Grid>
+
+          </Grid>
+        </Container>
+      </BrowserRouter>)
+  }
+
 }
 
 export default App;
