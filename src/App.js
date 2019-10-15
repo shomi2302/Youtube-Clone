@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Grid,Container} from '@material-ui/core'
+import {Grid,Container,makeStyles} from '@material-ui/core'
 import { BrowserRouter, Route } from 'react-router-dom'
 import youtube from './api/youtube'
 import SearchBar from './components/search-bar'
@@ -18,7 +18,7 @@ class App extends React.Component {
     const res = await youtube.get('search',{
       params:{
         part:'snippet',
-        maxResults: 12,
+        maxResults: 8,
         key: 'AIzaSyCvTJVsowiCrEtQ79R9CHEeOglFCY1Q_rI',
         q: searchTerm
       }
@@ -41,6 +41,7 @@ class App extends React.Component {
 
 
   render() {
+
     const {videos,selectedVideo} = this.state
     return (
       <BrowserRouter>
@@ -52,9 +53,10 @@ class App extends React.Component {
             </Grid>
 
             <Grid item xs={12}>
-              <Route path="/:video_id" render={(routeProps) => (<VideoDetails {...routeProps} video={selectedVideo} />)}/>
+              <Route path="/:video_id" render={(routeProps) => (<VideoDetails {...routeProps} video={selectedVideo} selectVideoFunc={this.selectVideoFunc} videos={videos}/>)}/>
               <Route exact path="/" render={(routeProps) => (<VideoList {...routeProps} selectVideoFunc={this.selectVideoFunc} videos={videos} />)}/>
             </Grid>
+
 
           </Grid>
         </Container>

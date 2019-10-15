@@ -8,12 +8,17 @@ const useStyles = makeStyles({
    gridBox:{
      display: 'grid',
      gridGap: '30px',
-     gridTemplateColumns: '1fr 1fr 1fr 1fr'
+     gridTemplateColumns: '1fr 1fr 1fr'
+   },
+   gridBox2:{
+     display: 'grid',
+     gridGap: '10px'
    }
 });
 
 
-const VideoList = ({videos, selectVideoFunc}) => {
+const VideoList = ({videos, selectVideoFunc, match}) => {
+
   const VidsList = videos.map((video,index) => {
     return (<VideoItem video={video} selectVideoFunc={selectVideoFunc} key={index}/>)
   })
@@ -22,9 +27,10 @@ const VideoList = ({videos, selectVideoFunc}) => {
 
   return (
     <div>
-      <div className={classes.gridBox}>
+      <div className={(match) ? classes.gridBox : classes.gridBox2}>
         {VidsList}
       </div>
+
     </div>
   )
 }
