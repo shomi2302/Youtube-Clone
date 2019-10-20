@@ -9,16 +9,44 @@
 }
 
 body{
-  background: rgb(255,255,255);
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(249,249,249,1) 46%);
+   background: -webkit-linear-gradient(left, #f2f2f2 0%, #f1f7ff 100%);
+}
+
+.header{
+  background: -webkit-linear-gradient(left, #ee0979 0%, #ff6a00 100%);
+  background: -o-linear-gradient(left, #ee0979 0%, #ff6a00 100%);
+  background: linear-gradient(to right, #ee0979 0%, #ff6a00 100%);
+  padding: 50px 0;
+  text-align: center;
+  color: white;
+}
+
+.header h1{
+  cursor: pointer
 }
 
 .rotate{
-  -webkit-animation:spin 4s linear infinite;
-  -moz-animation:spin 4s linear infinite;
-  animation:spin 4s linear infinite;
+  -webkit-animation:spin 1s linear infinite;
+  -moz-animation:spin 1s linear infinite;
+  animation:spin 1s linear infinite;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: all 900ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: all 600ms;
+}

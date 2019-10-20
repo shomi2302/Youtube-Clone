@@ -36,11 +36,12 @@ const useStyles = makeStyles({
 });
 
 const VideoDetails = ({video,selectVideoFunc,videos}) => {
+
   const classes = useStyles();
   if(!video) return  (<div className={classes.loadContainer}><Icon className="rotate" fontSize="large" color="primary">loop</Icon></div>)
 
   const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`
-  return (
+  return ( 
 
       <Grid container spacing={3}>
       <Grid item xs={8}>
@@ -76,7 +77,7 @@ const VideoDetails = ({video,selectVideoFunc,videos}) => {
         </Paper>
       </Grid>
       <Grid className={classes.videoList} item xs={4}>
-        <VideoList selectVideoFunc={selectVideoFunc} videos={videos}></VideoList>
+        <VideoList selectVideoFunc={selectVideoFunc} videos={videos.slice(0,4)}></VideoList>
       </Grid>
       </Grid>
 

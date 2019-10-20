@@ -1,5 +1,4 @@
 import React from 'react';
-import { Grid } from '@material-ui/core'
 import VideoItem from './video-item'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -26,12 +25,9 @@ const VideoList = ({videos, selectVideoFunc, match}) => {
   const classes = useStyles()
 
   return (
-    <div>
       <div className={(match) ? classes.gridBox : classes.gridBox2}>
         {VidsList}
       </div>
-
-    </div>
   )
 }
 
