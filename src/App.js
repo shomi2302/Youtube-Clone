@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Grid,Container } from '@material-ui/core'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import youtube from './api/youtube'
 import SearchBar from './components/search-bar'
 import VideoDetails from './components/video-details'
@@ -44,7 +44,7 @@ class App extends React.Component {
 
     const {videos,selectedVideo} = this.state
     return (
-      <BrowserRouter>
+      <Router>
          <Route render={({ history, location }) => (
           <Container maxWidth="lg" fixed style={{marginBottom:'30px'}}>
             <Grid justify="center" container spacing={3}>
@@ -71,7 +71,7 @@ class App extends React.Component {
             </Grid>
           </Container>
         )}/>
-      </BrowserRouter>)
+      </Router>)
   }
 
 }
