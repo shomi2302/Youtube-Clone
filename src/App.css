@@ -13,9 +13,9 @@ body{
 }
 
 .header{
-  background: -webkit-linear-gradient(left, #ee0979 0%, #ff6a00 100%);
-  background: -o-linear-gradient(left, #ee0979 0%, #ff6a00 100%);
-  background: linear-gradient(to right, #ee0979 0%, #ff6a00 100%);
+  background: -webkit-linear-gradient(left, #db4437 0%, #dd5537 100%);
+  background: -o-linear-gradient(left, #db4437 0%, #dd5537 100%);
+  background: linear-gradient(to right, #db4437 0%, #dd5537 100%);
   padding: 50px 0;
   text-align: center;
   color: white;
